@@ -1,24 +1,16 @@
-from PIL import Image, ImageEnhance, ImageOps
+from PIL import Image, ImageOps
 
-#read the image
-im = Image.open("image.jpg")
+# open image
+img = Image.open("image.jpg")
 
-#image brightness enhancer
-enhancer = ImageEnhance.Brightness(im)
+# border color
+color = "green"
 
-#image invert color enhancer
-im = Image.open('image.jpg')
-im_invert = ImageOps.invert(im)
-im_invert.save('invert.jpg', quality=95)
+# top, right, bottom, left
+border = (10, 10, 10, 10)
 
-# factor = 1 #gives original image
-# im_output = enhancer.enhance(factor)
-# im_output.save('original-image.png')
-#
-# factor = 0.5 #darkens the image
-# im_output = enhancer.enhance(factor)
-# im_output.save('darkened-image.png')
-#
-# factor = 1.5 #brightens the image
-# im_output = enhancer.enhance(factor)
-# im_output.save('brightened-image.png')
+new_img = ImageOps.expand(img, border=border, fill=color)
+
+# save new image
+new_img.save("border.jpg")
+
